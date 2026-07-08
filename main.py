@@ -1,5 +1,7 @@
 import os
-import login.logica
+from login.log_in import inicio_sesion
+from login.sign_up import registrarse
+from login.log_out import cerrar_sesion
 
 def main(sesion, sistema, cuenta): 
     
@@ -14,11 +16,11 @@ def main(sesion, sistema, cuenta):
 
             case "1":
                 os.system('cls')
-                sesion, cuenta = login.logica.inicio_sesion(cuenta, cuentas)
+                sesion, cuenta = inicio_sesion(cuenta, cuentas)
                     
             case "2":
                 os.system('cls')
-                login.logica.registrarse(cuentas)
+                registrarse(cuentas)
             case "3":
                 os.system('cls')
                 sistema = False
@@ -42,7 +44,7 @@ def main(sesion, sistema, cuenta):
 
             case "2":
                 os.system('cls')
-                sesion, cuenta = login.logica.cerrar_sesion(cuentas, cuenta)
+                sesion, cuenta = cerrar_sesion(cuentas, cuenta)
             case "3":
                 os.system('cls')
                 sistema = False
