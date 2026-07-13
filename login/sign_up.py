@@ -11,7 +11,6 @@ def registrarse(cuentas):
         if nombre != "" and contraseña != "":
 
             id = uuid.uuid4()
-            print(type(id))
             usuario.update({"ID": id, "Nombre": nombre, "Contraseña": contraseña})
 
             print("Registro exitoso")

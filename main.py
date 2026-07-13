@@ -2,6 +2,7 @@ import os
 from login.log_in import inicio_sesion
 from login.sign_up import registrarse
 from login.log_out import cerrar_sesion
+from app.main import menu
 
 def main(sesion, sistema, cuenta): 
     
@@ -39,8 +40,7 @@ def main(sesion, sistema, cuenta):
         match pnt:
             case "1":
                 os.system('cls')
-                print("Ingresando...")
-                sistema = False
+                menu()
 
             case "2":
                 os.system('cls')
