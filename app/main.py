@@ -24,10 +24,11 @@ def menu():
 
             case "2":
                 os.system('cls')
-                votar(candidatos)
+                votar(candidatos, votantes)
 
             case "3":
                 os.system('cls')
+                evaluar_votos(candidatos)
             case "4":
                 os.system('cls')
                 sistema = False
@@ -36,3 +37,4 @@ def menu():
                   os.system('cls')
 
 candidatos = []
+votantes = []

@@ -1,7 +1,6 @@
 import os
 import random
 
-
 def registrar_candidato(candidatos):
 
     datos_ingresados = dict.fromkeys(["Nombre", "Apellido", "Partido", "Casilla","Votos"])

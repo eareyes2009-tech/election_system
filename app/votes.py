@@ -1,11 +1,14 @@
 import os
+from verification import verificar_candidatos
+from verification import verificar_votantes
 
-def votar(candidatos):
+def votar(candidatos, votantes):
 
-    verificacion = verificar_candidatos(candidatos)
+    verificacion_candidatos = verificar_candidatos(candidatos)
+    verificacion_votante = verificar_votantes(votantes)
     contador = 0
 
-    while verificacion:
+    while verificacion_candidatos and verificacion_votante:
         os.system('cls')
        
         print("Candidatos")
@@ -13,23 +16,15 @@ def votar(candidatos):
             
             contador += 1
             candidato = list(opcion.values())[:-1]
-            print(f"{contador}. {candidato}")
+            print(f"{contador}. Candidato: {candidato[0]} {candidato[1]}, Partido: {candidato[2]}, Casilla: {candidato[3]}")
 
-        voto = input(f"¿Cual desea votar?(1-{contador})")
+        voto = int(input(f"¿Cual desea votar? Introduzca el numero de casilla "))
 
+        for seleccion in candidatos:
+            
+            if voto in seleccion.values():
+
+                seleccion["Votos"] += 1
+                os.system('cls')
         
-
         break
-
-def verificar_candidatos(candidatos):
-    
-    verificacion = False
-
-    if candidatos == []:
-        print("No existe candidatos. Registre candidatos primero")
-    elif len(candidatos) <= 1:
-        print("Candidatos insuficientes para realizar votacion")
-    else:
-        verificacion = True
-
-    return verificacion
