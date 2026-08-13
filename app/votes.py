@@ -1,6 +1,6 @@
 import os
-from verification import verificar_candidatos
-from verification import verificar_votantes
+from app.verification import verificar_candidatos
+from app.verification import verificar_votantes
 
 def votar(candidatos, votantes):
 
