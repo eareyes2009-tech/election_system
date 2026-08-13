@@ -7,8 +7,10 @@ from app.results import *
 def menu():
 
     sistema = True
+    candidatos = []
 
     while sistema:
+        
         print("Menu Principal")
         print("1.Ingresar Candidato\n"
         "2.Votar\n"
@@ -24,7 +26,7 @@ def menu():
 
             case "2":
                 os.system('cls')
-                votar(candidatos, votantes)
+                votar(candidatos)
 
             case "3":
                 os.system('cls')
@@ -36,5 +38,4 @@ def menu():
                   print("¿?")
                   os.system('cls')
 
-candidatos = []
-votantes = []
+menu()

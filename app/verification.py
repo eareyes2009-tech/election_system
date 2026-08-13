@@ -11,9 +11,7 @@ def verificar_candidatos(candidatos):
 
     return verificacion
 
-def verificar_votantes(votantes):
-
-    datos_ingresados = dict.fromkeys(["Nombre", "Apellido", "Identidad"])
+def verificar_votantes():
 
     while True:
 

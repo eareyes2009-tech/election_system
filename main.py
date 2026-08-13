@@ -4,62 +4,60 @@ from login.sign_up import registrarse
 from login.log_out import cerrar_sesion
 from app.main import menu
 
-def main(sesion, sistema, cuenta): 
-    
-    if sesion == False:
-        print("Inicio")
-        print("1.Inicio de Sesion\n"
-        "2.Registrarse\n"
-        "3.Salir ")
-        pnt = input("Ingrese la opcion (1-3): ")
+def main(): 
 
-        match pnt:
+    sistema = True
+    sesion = False
+    cuentas = []
+    cuenta = dict.fromkeys(["ID", "Nombre", "Contraseña"])
 
-            case "1":
-                os.system('cls')
-                sesion, cuenta = inicio_sesion(cuenta, cuentas)
-                    
-            case "2":
-                os.system('cls')
-                registrarse(cuentas)
-            case "3":
-                os.system('cls')
-                sistema = False
-            case _:
-                print("¿?")
-                os.system('cls')
-                
-    elif sesion == True:
-        
-        print("Inicio")
-        print("1.Ingresar al sistema\n"
-            "2.Cerrar Sesion\n"
+    while sistema:
+
+        if sesion == False:
+            print("Inicio")
+            print("1.Inicio de Sesion\n"
+            "2.Registrarse\n"
             "3.Salir ")
-        pnt = input("Ingrese la opcion (1-3): ")
-        
-        match pnt:
-            case "1":
-                os.system('cls')
-                menu()
+            pnt = input("Ingrese la opcion (1-3): ")
 
-            case "2":
-                os.system('cls')
-                sesion, cuenta = cerrar_sesion(cuentas, cuenta)
-            case "3":
-                os.system('cls')
-                sistema = False
+            match pnt:
 
-            case _:
-                print("¿?")
-                os.system('cls')
-    return sesion, sistema, cuenta
+                case "1":
+                    os.system('cls')
+                    sesion, cuenta = inicio_sesion(cuenta, cuentas)
 
-sesion = False
-sistema = True
-cuentas = []
-cuenta = dict.fromkeys(["ID", "Nombre", "Contraseña"])
+                case "2":
+                    os.system('cls')
+                    registrarse(cuentas)
+                case "3":
+                    os.system('cls')
+                    break
+                case _:
+                    print("¿?")
+                    os.system('cls')
 
-while sistema == True:
-    sesion, sistema, cuenta = main(sesion,sistema, cuenta)
-else:
-    os.system('cls')
+        elif sesion == True:
+
+            print("Inicio")
+            print("1.Ingresar al sistema\n"
+                "2.Cerrar Sesion\n"
+                "3.Salir ")
+            pnt = input("Ingrese la opcion (1-3): ")
+
+            match pnt:
+                case "1":
+                    os.system('cls')
+                    menu()
+
+                case "2":
+                    os.system('cls')
+                    sesion, cuenta = cerrar_sesion(cuentas, cuenta)
+                case "3":
+                    os.system('cls')
+                    break
+
+                case _:
+                    print("¿?")
+                    os.system('cls')
+
+main()

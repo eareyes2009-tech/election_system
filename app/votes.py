@@ -2,10 +2,10 @@ import os
 from app.verification import verificar_candidatos
 from app.verification import verificar_votantes
 
-def votar(candidatos, votantes):
+def votar(candidatos):
 
     verificacion_candidatos = verificar_candidatos(candidatos)
-    verificacion_votante = verificar_votantes(votantes)
+    verificacion_votante = verificar_votantes()
     contador = 0
 
     while verificacion_candidatos and verificacion_votante:
