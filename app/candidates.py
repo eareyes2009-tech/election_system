@@ -27,24 +27,23 @@ def registrar_candidato(candidatos):
 def validacion_casilla(candidatos):
 
     casilla_libre = False
-    casillas_leidas = list()
-
-
+    
     while not casilla_libre:
-                
+
+        encontrado = False
         casilla = random.randint(0,100)
 
         for seleccion in candidatos:
 
-            casillas_leidas.append(seleccion["Casilla"])
+            if casilla == seleccion["Casilla"]:
 
-        if casilla in casillas_leidas:
+                encontrado = True
+                break
 
-            casilla_libre = False
-        else: 
+        if encontrado == False:
+
             casilla_libre = True
 
     return casilla
-
 
 
