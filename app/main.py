@@ -1,7 +1,7 @@
 import os
 from app.candidates import registrar_candidato
 from app.votes import votar
-from app.results import *
+from app.results import evaluar_votos
 
 
 def menu():
