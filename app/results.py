@@ -1,5 +1,3 @@
-import os
-
 def evaluar_votos(candidatos):
 
         ganador = max(candidatos, key= lambda candidato: candidato["Votos"])
