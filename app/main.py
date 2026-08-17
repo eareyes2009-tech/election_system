@@ -37,5 +37,3 @@ def menu():
             case _:
                   print("¿?")
                   os.system('cls')
-
-menu()
