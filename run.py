@@ -3,9 +3,12 @@ from login.log_in import inicio_sesion
 from login.sign_up import registrarse
 from login.log_out import cerrar_sesion
 from app.main import menu
+from data.management import paths_management
+
 
 def main(): 
 
+    paths_management()
     sistema = True
     sesion = False
     cuentas = []
