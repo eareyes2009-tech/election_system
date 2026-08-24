@@ -1,4 +1,5 @@
 import os
+import bcrypt
 
 def inicio_sesion(cuenta, cuentas):
 
@@ -8,10 +9,12 @@ def inicio_sesion(cuenta, cuentas):
         coincidencia = False
         nombre = input("Ingrese nombre de usuario: ")
         contraseña = input("Ingrese una contraseña: ")
-        datos_ingresados.update({"Nombre": nombre, "Contraseña": contraseña})
+        bytes = contraseña.encode("utf-8")
 
-        for usuario in cuentas:
-            if datos_ingresados["Nombre"] == usuario["Nombre"] and datos_ingresados["Contraseña"] == usuario["Contraseña"]:
+        datos_ingresados.update({"Nombre": nombre, "Contraseña": bytes})
+
+        for usuario in cuentas: 
+            if datos_ingresados["Nombre"] == usuario["Nombre"] and bcrypt.checkpw(datos_ingresados["Contraseña"], usuario["Contraseña"]):
                 coincidencia = True
                 break
         if coincidencia:
@@ -32,6 +35,6 @@ def inicio_sesion(cuenta, cuentas):
 def asignar_cuenta(cuentas, datos_ingresados):
 
     for seleccion in cuentas:
-        if seleccion["Nombre"] == datos_ingresados["Nombre"] and seleccion["Contraseña"] == datos_ingresados["Contraseña"]:
+        if seleccion["Nombre"] == datos_ingresados["Nombre"] and bcrypt.checkpw(datos_ingresados["Contraseña"], seleccion["Contraseña"]):
             cuenta = seleccion.copy()
             return cuenta

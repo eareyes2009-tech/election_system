@@ -1,5 +1,6 @@
 import os
 import uuid
+import bcrypt
 
 def registrarse(cuentas):
 
@@ -10,8 +11,9 @@ def registrarse(cuentas):
 
         if nombre != "" and contraseña != "":
 
+            hash = hash_password(contraseña)
             id = uuid.uuid4()
-            usuario.update({"ID": id, "Nombre": nombre, "Contraseña": contraseña})
+            usuario.update({"ID": id, "Nombre": nombre, "Contraseña": hash})
 
             print("Registro exitoso")
             cuentas.append(usuario)
@@ -20,3 +22,11 @@ def registrarse(cuentas):
         else:
             print("Campos invalidos")
             os.system('cls')
+
+def hash_password(contraseña):
+
+    bytes = contraseña.encode("utf-8")
+    salt = bcrypt.gensalt()
+    password_hashed = bcrypt.hashpw(bytes, salt)
+
+    return password_hashed
