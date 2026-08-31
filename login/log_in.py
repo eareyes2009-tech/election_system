@@ -1,27 +1,27 @@
 import os
 import bcrypt
+import pandas as pd
 
-def inicio_sesion(cuenta, cuentas):
 
-    datos_ingresados = dict.fromkeys(["Nombre", "Contraseña"])
+def inicio_sesion():
+
+    users = pd.read_excel("data/users/users.xlsx")
     contador = 0
     while contador <5 :
-        coincidencia = False
         nombre = input("Ingrese nombre de usuario: ")
-        contraseña = input("Ingrese una contraseña: ")
-        bytes = contraseña.encode("utf-8")
+        contraseña = input("Ingrese una contraseña: ").encode("utf-8")
 
-        datos_ingresados.update({"Nombre": nombre, "Contraseña": bytes})
+        users_names = users[users["Nombre"] == nombre]
+        if not users_names.empty:
 
-        for usuario in cuentas: 
-            if datos_ingresados["Nombre"] == usuario["Nombre"] and bcrypt.checkpw(datos_ingresados["Contraseña"], usuario["Contraseña"]):
-                coincidencia = True
-                break
-        if coincidencia:
-            print("Inicio de sesion exitoso")
-            os.system('cls')
-            cuenta = asignar_cuenta(cuentas, datos_ingresados)
-            return coincidencia, cuenta
+            users_password = users_names.iloc[0]["Contraseña"].encode("utf-8")
+
+            if bcrypt.checkpw(contraseña, users_password):
+
+                print("Inicio de sesion exitoso")
+                os.system('cls')
+                cuenta = asignar_cuenta(users,nombre)
+                return True, cuenta
         else:
             contador += 1
             print("Usuario o contraseña incorrecta")
@@ -30,11 +30,9 @@ def inicio_sesion(cuenta, cuentas):
         if contador == 5:
             os.system('cls')
             print("Demasiados intentos incorrectos")
-            return False, cuenta
+            return False, None
         
-def asignar_cuenta(cuentas, datos_ingresados):
+def asignar_cuenta(users,name):
 
-    for seleccion in cuentas:
-        if seleccion["Nombre"] == datos_ingresados["Nombre"] and bcrypt.checkpw(datos_ingresados["Contraseña"], seleccion["Contraseña"]):
-            cuenta = seleccion.copy()
-            return cuenta
+    cuenta = users[users["Nombre"] == name]
+    return cuenta.to_dict(orient = "records")

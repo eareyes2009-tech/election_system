@@ -11,8 +11,6 @@ def main():
     paths_management()
     sistema = True
     sesion = False
-    cuentas = []
-    cuenta = dict.fromkeys(["ID", "Nombre", "Contraseña"])
 
     while sistema:
 
@@ -27,11 +25,11 @@ def main():
 
                 case "1":
                     os.system('cls')
-                    sesion, cuenta = inicio_sesion(cuenta, cuentas)
+                    sesion, cuenta = inicio_sesion()
 
                 case "2":
                     os.system('cls')
-                    registrarse(cuentas)
+                    registrarse()
                 case "3":
                     os.system('cls')
                     break
@@ -40,7 +38,6 @@ def main():
                     os.system('cls')
 
         elif sesion == True:
-
             print("Inicio")
             print("1.Ingresar al sistema\n"
                 "2.Cerrar Sesion\n"
@@ -54,7 +51,7 @@ def main():
 
                 case "2":
                     os.system('cls')
-                    sesion, cuenta = cerrar_sesion(cuentas, cuenta)
+                    sesion, cuenta = cerrar_sesion(cuenta)
                 case "3":
                     os.system('cls')
                     break

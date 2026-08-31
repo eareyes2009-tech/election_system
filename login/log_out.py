@@ -1,8 +1,6 @@
-def cerrar_sesion(cuentas,cuenta):
+def cerrar_sesion(cuenta):
 
-    for seleccion in cuentas:
-        if seleccion["ID"] == cuenta["ID"]:
-            cuenta.update({"ID" : None, "Nombre" : None, "Contraseña": None})
+    cuenta = None
 
     return False, cuenta
 
