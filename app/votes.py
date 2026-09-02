@@ -1,30 +1,33 @@
 import os
 from app.verification import verificar_candidatos
 from app.verification import verificar_votantes
+import pandas as pd
 
-def votar(candidatos):
+def votar():
 
-    verificacion_candidatos = verificar_candidatos(candidatos)
+    verificacion_candidatos = verificar_candidatos()
     verificacion_votante = verificar_votantes()
     contador = 0
 
-    while verificacion_candidatos and verificacion_votante:
-        os.system('cls')
-       
+    if verificacion_candidatos and verificacion_votante:
+
+        candidates = pd.read_excel("data/candidates/candidates.xlsx", index_col=False)
+        voters = pd.read_excel("data/voters/voters.xlsx", index_col= False)
         print("Candidatos")
-        for opcion in candidatos:
+
+        cnt = len(candidates["ID"].tolist()) - 1
+        while cnt >= 0:
             
             contador += 1
-            candidato = list(opcion.values())[:-1]
-            print(f"{contador}. Candidato: {candidato[0]} {candidato[1]}, Partido: {candidato[2]}, Casilla: {candidato[3]}")
+            print(f"{contador}. Candidato: {candidates.iloc[cnt]["Nombre"]} {candidates.iloc[cnt]["Apellido"]}, Partido: {candidates.iloc[cnt]["Partido"]}, Casilla: {candidates.iloc[cnt]["Casilla"]}")
+            cnt -= 1
 
         voto = int(input(f"¿Cual desea votar? Introduzca el numero de casilla "))
+ 
+        if voto in candidates["Casilla"].tolist():
 
-        for seleccion in candidatos:
-            
-            if voto in seleccion.values():
+                candidates.loc[candidates["Casilla"] == voto, "Votos"] += 1 
+                with pd.ExcelWriter("data/candidates/candidates.xlsx") as write:
+                    candidates.to_excel(write, index = False)
 
-                seleccion["Votos"] += 1
                 os.system('cls')
-        
-        break

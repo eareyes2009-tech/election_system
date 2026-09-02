@@ -7,8 +7,8 @@ def paths_management():
     info = pd.DataFrame({"Path": [Path("data/users"), Path("data/candidates"),Path("data/voters")],
                             "File Name": ["users.xlsx","candidates.xlsx","voters.xlsx"],
                             "Cell Names": [["ID", "Nombre", "Contraseña"],
-                                        ["ID", "Nombre", "Partido","Casillas"],
-                                        ["ID", "Nombre", "Identificacion", "Voto"]]})
+                                        ["ID", "Nombre", "Apellido", "Partido","Casilla","Votos"],
+                                        ["ID", "Nombre", "Apellido", "Identificacion", "Estado"]]})
     for directories, filenames, cellnames in info.itertuples(index=False):
 
         directories.mkdir(parents=True, exist_ok=True)    

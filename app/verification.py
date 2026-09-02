@@ -1,10 +1,14 @@
-def verificar_candidatos(candidatos):
+import pandas as pd
+import os
+
+def verificar_candidatos():
     
     verificacion = False
+    candidates = pd.read_excel("data/candidates/candidates.xlsx")
 
-    if candidatos == []:
+    if candidates["ID"].tolist() == []:
         print("No existe candidatos. Registre candidatos primero")
-    elif len(candidatos) <= 1:
+    elif len(candidates["ID"].tolist()) <= 1:
         print("Candidatos insuficientes para realizar votacion")
     else:
         verificacion = True
@@ -13,48 +17,44 @@ def verificar_candidatos(candidatos):
 
 def verificar_votantes():
 
-    while True:
+    verificacion = False
+    voters = pd.read_excel("data/voters/voters.xlsx")
 
-        nombre = input("Ingrese su nombre: ")
-        apellido = input("Ingrese su apellido: ")
-
-        if nombre == "" and apellido == "":
-            print("Campos Invalidos")
-        else:        
-            identidad = input("Ingrese su numero de identidad: ")
-            verificacion = verificar_identidad(identidad)
-            return verificacion
-        
-def verificar_identidad(identidad):
-
-    verificacion = list()
-    duplicar = False
-
-    for digito in reversed(identidad): 
-
-        digito = int(digito)
-
-        if duplicar == True:
-            digito *= 2
-            duplicar = False
-        else:
-            digito *= 1
-            duplicar = True
-
-        if digito > 9:
-
-            digito -= 9
-
-        verificacion.append(digito)
-        
-    suma_total = sum(verificacion) 
-    resto = suma_total % 10
-
-    if resto == 0:
-        print("Validacion Exitosa")
-        validacion = True
+    if (voters["ID"].tolist() == []) or (False not in voters["Estado"].tolist()):
+        print("No existen votantes registrados validos.")
     else:
-        print("Identidad no Valida")
-        validacion = False
+        verificacion = evaluate_voter()
 
-    return validacion
+    return verificacion    
+        
+def evaluate_voter():
+
+    voters = pd.read_excel("data/voters/voters.xlsx", index_col= False)
+    verification = False
+    first_name = input("Ingrese su nombre: ")
+    last_name = input("Ingrese su apellido: ")
+
+    if first_name == "" or last_name == "":
+        print("Campos Invalidos")
+        os.system("cls")
+    else:        
+        identity = input("Ingrese su numero de identidad: ")
+
+        voter_info = voters.loc[(voters["Nombre"] == first_name) & (voters["Apellido"] == last_name) & (voters["Identificacion"].astype(str) == identity)]    
+
+        if not voter_info.empty:
+            voter_state = voter_info.iloc[0]["Estado"]
+
+            if voter_state == True:
+                print("El elector ya votó")
+            else:
+                verification = True
+                voters.loc[(voters["Nombre"] == first_name) & (voters["Apellido"]==last_name) & (voters["Identificacion"].astype(str) == identity), "Estado"] = True
+                with pd.ExcelWriter("data/voters/voters.xlsx") as write:
+                   voters.to_excel(write, index = False)
+        else:
+            print("No existe el elector") 
+
+    return verification
+
+        
