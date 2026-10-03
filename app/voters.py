@@ -14,7 +14,7 @@ def voters_registrer():
         first_name = input("Ingrese su nombre: ")
         last_name = input("Ingrese su apellido: ")
 
-        if first_name == "" and last_name == "":
+        if first_name == "" or last_name == "":
             print("Campos Invalidos")
             os.system("cls")
         else:        

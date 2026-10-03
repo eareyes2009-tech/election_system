@@ -29,5 +29,11 @@ def votar():
                 candidates.loc[candidates["Casilla"] == voto, "Votos"] += 1 
                 with pd.ExcelWriter("data/candidates/candidates.xlsx") as write:
                     candidates.to_excel(write, index = False)
-
+                print("Voto Registrado Exitosamente")
                 os.system('cls')
+    elif not verificacion_candidatos and verificacion_votante:
+        print("Error: Candidatos No Validos")
+    elif not verificacion_votante and verificacion_candidatos:
+         print("Error: Votantes No validos")
+    else:
+         print("Error: Informacion de Candidatos y Votantes no valida.")

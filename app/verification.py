@@ -6,10 +6,8 @@ def verificar_candidatos():
     verificacion = False
     candidates = pd.read_excel("data/candidates/candidates.xlsx")
 
-    if candidates["ID"].tolist() == []:
-        print("No existe candidatos. Registre candidatos primero")
-    elif len(candidates["ID"].tolist()) <= 1:
-        print("Candidatos insuficientes para realizar votacion")
+    if candidates["ID"].tolist() == [] or len(candidates["ID"].tolist()) <= 1:
+        pass
     else:
         verificacion = True
 
@@ -21,7 +19,7 @@ def verificar_votantes():
     voters = pd.read_excel("data/voters/voters.xlsx")
 
     if (voters["ID"].tolist() == []) or (False not in voters["Estado"].tolist()):
-        print("No existen votantes registrados validos.")
+        pass
     else:
         verificacion = evaluate_voter()
 
