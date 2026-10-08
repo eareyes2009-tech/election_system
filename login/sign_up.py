@@ -4,22 +4,22 @@ import bcrypt
 import openpyxl
 import pandas as pd
 
-def registrarse():
+def register():
 
     wb = openpyxl.load_workbook("data/users/users.xlsx")
     ws = wb.active
     while True:
-        nombre = input("Ingrese nombre de usuario: ")
-        contraseña = bcrypt.hashpw(input("Ingrese una contraseña: ").encode("utf-8"), bcrypt.gensalt())
+        name = input("Ingrese nombre de usuario: ")
+        password = bcrypt.hashpw(input("Ingrese una contraseña: ").encode("utf-8"), bcrypt.gensalt())
 
-        if nombre != "" and contraseña != "":
+        if name != "" and password != "":
 
-            if username_validation(nombre):
+            if username_validation(name):
 
                 id = str(uuid.uuid4())
             
-                usuario = [id, nombre, contraseña]
-                ws.append(usuario)
+                user = [id, name, password]
+                ws.append(user)
                 print("Registro exitoso")
                 os.system('cls')
                 break   

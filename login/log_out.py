@@ -1,6 +1,6 @@
-def cerrar_sesion(cuenta):
+def close_account(account):
 
-    cuenta = None
+    account = None
 
-    return False, cuenta
+    return False, account
 

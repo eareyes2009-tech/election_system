@@ -37,32 +37,32 @@ def voters_registrer():
         
 def validate_identity(identity):
 
-    verificacion = list()
-    duplicar = False
+    verification = list()
+    duplicate = False
 
-    for digito in reversed(identity): 
+    for digit in reversed(identity): 
 
-        digito = int(digito)
+        digit = int(digit)
 
-        if duplicar == True:
-            digito *= 2
-            duplicar = False
+        if duplicate == True:
+            digit *= 2
+            duplicate = False
         else:
-            digito *= 1
-            duplicar = True
+            digit *= 1
+            duplicate = True
 
-        if digito > 9:
+        if digit > 9:
 
-            digito -= 9
+            digit -= 9
 
-        verificacion.append(digito)
+        verification.append(digit)
         
-    suma_total = sum(verificacion) 
-    resto = suma_total % 10
+    total_amount = sum(verification) 
+    rest = total_amount % 10
 
-    if resto == 0:
-        validacion = True
+    if rest == 0:
+        validation = True
     else:
-        validacion = False
+        validation = False
 
-    return validacion
+    return validation

@@ -1,29 +1,29 @@
 import pandas as pd
 import os
 
-def verificar_candidatos():
+def verify_candidates():
     
-    verificacion = False
+    verification = False
     candidates = pd.read_excel("data/candidates/candidates.xlsx")
 
     if candidates["ID"].tolist() == [] or len(candidates["ID"].tolist()) <= 1:
         pass
     else:
-        verificacion = True
+        verification = True
 
-    return verificacion
+    return verification
 
-def verificar_votantes():
+def verify_voter():
 
-    verificacion = False
+    verification = False
     voters = pd.read_excel("data/voters/voters.xlsx")
 
     if (voters["ID"].tolist() == []) or (False not in voters["Estado"].tolist()):
         pass
     else:
-        verificacion = evaluate_voter()
+        verification = evaluate_voter()
 
-    return verificacion    
+    return verification    
         
 def evaluate_voter():
 

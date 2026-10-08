@@ -1,14 +1,14 @@
 import os
-from app.candidates import registrar_candidato
-from app.votes import votar
-from app.results import evaluar_votos
+from app.candidates import candidates_register
+from app.votes import vote
+from app.results import evaluate_votes
 from app.voters import voters_registrer
 
 def menu():
 
-    sistema = True
+    system = True
 
-    while sistema:
+    while system:
         
         print("Menu Principal")
         print("1.Ingresar Candidato\n"
@@ -22,18 +22,18 @@ def menu():
 
             case "1":
                 os.system('cls')
-                registrar_candidato()
+                candidates_register()
             case "2":
 
                 os.system('cls')
                 voters_registrer()
             case "3":
                 os.system('cls')
-                votar()
+                vote()
 
             case "4":
                 os.system('cls')
-                evaluar_votos()
+                evaluate_votes()
             case "5":
                 os.system('cls')
                 sistema = False
