@@ -26,7 +26,7 @@ Python, Pandas, openpyxl, bcrypt.
 
 ## Project Status
 
-The project is still under development. The core is nearly complete; what remains is refining the logic and adding exception handling, as well as finishing the migration of variable and function names to English.
+The project is still under development. The core is nearly complete; what remains is refining the logic and adding exception handling.
 
 ## Next Steps
 

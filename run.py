@@ -1,7 +1,7 @@
 import os
-from login.log_in import inicio_sesion
-from login.sign_up import registrarse
-from login.log_out import cerrar_sesion
+from login.log_in import verify_account
+from login.sign_up import register
+from login.log_out import close_account
 from app.main import menu
 from data.management import paths_management
 
@@ -9,12 +9,12 @@ from data.management import paths_management
 def main(): 
 
     paths_management()
-    sistema = True
-    sesion = False
+    system = True
+    session = False
 
-    while sistema:
+    while system:
 
-        if sesion == False:
+        if session == False:
             print("Inicio")
             print("1.Inicio de Sesion\n"
             "2.Registrarse\n"
@@ -25,11 +25,11 @@ def main():
 
                 case "1":
                     os.system('cls')
-                    sesion, cuenta = inicio_sesion()
+                    session, account = verify_account()
 
                 case "2":
                     os.system('cls')
-                    registrarse()
+                    register()
                 case "3":
                     os.system('cls')
                     break
@@ -37,7 +37,7 @@ def main():
                     print("¿?")
                     os.system('cls')
 
-        elif sesion == True:
+        elif session == True:
             print("Inicio")
             print("1.Ingresar al sistema\n"
                 "2.Cerrar Sesion\n"
@@ -51,7 +51,7 @@ def main():
 
                 case "2":
                     os.system('cls')
-                    sesion, cuenta = cerrar_sesion(cuenta)
+                    session, account = close_account(account)
                 case "3":
                     os.system('cls')
                     break

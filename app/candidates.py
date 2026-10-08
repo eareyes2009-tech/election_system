@@ -4,23 +4,23 @@ import openpyxl
 import pandas as pd
 import uuid
 
-def registrar_candidato():
+def candidates_register():
 
     wb = openpyxl.load_workbook("data/candidates/candidates.xlsx")
     ws = wb.active
     candidates = pd.read_excel("data/candidates/candidates.xlsx")
     while True:
 
-        nombre = input("Ingrese el primer Nombre: ")
-        apellido = input("Ingrese el primer Apellido: ")
-        partido = input("Ingrese el partido al que pertenece: ")
+        first_name = input("Ingrese el primer Nombre: ")
+        last_name = input("Ingrese el primer Apellido: ")
+        party = input("Ingrese el partido al que pertenece: ")
 
-        if nombre != "" and apellido != "" and partido != "":
+        if first_name != "" and last_name != "" and party != "":
 
-            casilla = validacion_casilla(candidates)
-            votos = 0
+            box = box_validation(candidates)
+            votes = 0
             id = str(uuid.uuid4())
-            cdt = [id, nombre, apellido, partido, casilla, votos]
+            cdt = [id, first_name, last_name, party, box, votes]
             print("Registro exitoso")
             ws.append(cdt)
             os.system('cls')
@@ -31,26 +31,26 @@ def registrar_candidato():
     wb.save("data/candidates/candidates.xlsx")
     wb.close()
 
-def validacion_casilla(candidatos):
+def box_validation(candidates):
 
-    casilla_libre = False
+    unchecked_box = False
     
-    while not casilla_libre:
+    while not unchecked_box:
 
-        encontrado = False
-        casilla = random.randint(0,100)
+        found = False
+        box = random.randint(0,100)
 
-        for seleccion in candidatos["Casilla"].tolist():
+        for selection in candidates["Casilla"].tolist():
 
-            if casilla == seleccion:
+            if box == selection:
 
-                encontrado = True
+                found = True
                 break
 
-        if encontrado == False:
+        if found == False:
 
-            casilla_libre = True
+            unchecked_box = True
 
-    return casilla
+    return box
 
 
