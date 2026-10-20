@@ -1,5 +1,5 @@
 import os
-from app.candidates import registrar_candidato
+from app.candidates import candidates_register
 from app.votes import vote
 from app.results import evaluate_votes
 from app.voters import voters_registrer
@@ -22,7 +22,7 @@ def menu():
 
             case "1":
                 os.system('cls')
-                registrar_candidato()
+                candidates_register()
             case "2":
 
                 os.system('cls')
@@ -36,7 +36,7 @@ def menu():
                 evaluate_votes()
             case "5":
                 os.system('cls')
-                sistema = False
+                system = False
             case _:
                   print("¿?")
                   os.system('cls')
